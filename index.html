@@ -135,13 +135,13 @@
       width: 64px;
       height: 64px;
       border-radius: 16px;
-      background: linear-gradient(135deg, #1e1a3a 0%, #2d2560 100%);
-      border: 1px solid rgba(91,76,224,0.3);
       flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
+      overflow: hidden;
+    }
+    .product-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .product-info h2 {
       font-size: 22px;
@@ -272,7 +272,7 @@
   <section class="products">
     <p class="section-label">Our Apps</p>
     <div class="product-card">
-      <div class="product-icon">🎯</div>
+      <div class="product-icon"><img src="gridgoal-icon.png" alt="GridGoal" /></div>
       <div class="product-info">
         <h2>GridGoal</h2>
         <p>A goal-tracking app built around the Harada Method — the same OW64 framework used by Olympic athletes and executives to achieve mastery. Set your 8 pillars, track 64 actions, and build the habits that matter.</p>
@@ -303,7 +303,7 @@
         </div>
         <div class="pipeline-item">
           <div class="pipeline-dot"></div>
-          <span>Follow along at <a href="mailto:joe@knockout-apps.com" style="color: var(--gold);">joe@knockout-apps.com</a></span>
+          <span>Questions? <a href="mailto:joe@knockout-apps.com" style="color: var(--gold);">joe@knockout-apps.com</a></span>
         </div>
       </div>
     </div>
