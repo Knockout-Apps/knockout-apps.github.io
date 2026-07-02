@@ -58,6 +58,26 @@
       max-width: 1120px;
       margin: 0 auto;
       padding: 96px 48px 80px;
+      display: flex;
+      align-items: center;
+      gap: 64px;
+    }
+    .hero-text { flex: 1; }
+    .hero-image-wrap {
+      flex-shrink: 0;
+      width: 260px;
+      -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    }
+    .hero-image-wrap img {
+      width: 100%;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .hero { flex-direction: column; }
+      .hero-image-wrap { display: none; }
     }
     .eyebrow {
       font-size: 12px;
@@ -261,10 +281,15 @@
   </nav>
 
   <section class="hero">
-    <p class="eyebrow">Independent iOS Development</p>
-    <h1>Focused apps for focused people.</h1>
-    <p>Knockout Apps LLC builds thoughtful, high-quality mobile applications for iOS. We believe the best apps do one thing exceptionally well.</p>
-    <div class="location-badge">Atlanta, GA</div>
+    <div class="hero-text">
+      <p class="eyebrow">Independent iOS Development</p>
+      <h1>Focused apps for focused people.</h1>
+      <p>Knockout Apps LLC builds thoughtful, high-quality mobile applications for iOS. We believe the best apps do one thing exceptionally well.</p>
+      <div class="location-badge">Atlanta, GA</div>
+    </div>
+    <div class="hero-image-wrap">
+      <img src="screenshot.png" alt="GridGoal app screenshot" />
+    </div>
   </section>
 
   <div class="divider"></div>
