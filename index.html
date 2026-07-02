@@ -3,50 +3,320 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Knockout Apps</title>
+  <title>Knockout Apps — iOS App Development</title>
+  <meta name="description" content="Knockout Apps LLC builds focused, thoughtful mobile apps for iOS. Based in Atlanta, GA." />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0c0c0e;
+      --bg-alt: #111113;
+      --border: rgba(255,255,255,0.07);
+      --text: #f0f0f0;
+      --muted: #606068;
+      --dim: #404048;
+      --gold: #e8d5a3;
+      --purple: #5b4ce0;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #0a0a0a;
-      color: #f0f0f0;
-      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1120px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .nav-logo {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .nav-contact {
+      font-size: 14px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--dim);
+      padding-bottom: 1px;
+      transition: color 0.2s;
+    }
+    .nav-contact:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 96px 48px 80px;
+    }
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      max-width: 700px;
+      margin-bottom: 24px;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+    .location-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #141416;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .location-badge::before {
+      content: "📍";
+      font-size: 12px;
+    }
+
+    /* DIVIDER */
+    .divider {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* PRODUCTS */
+    .products {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 40px;
+    }
+    .product-card {
+      background: #111113;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+      max-width: 720px;
+      transition: border-color 0.2s;
+    }
+    .product-card:hover { border-color: rgba(255,255,255,0.14); }
+    .product-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #1e1a3a 0%, #2d2560 100%);
+      border: 1px solid rgba(91,76,224,0.3);
+      flex-shrink: 0;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      font-size: 28px;
     }
-    .container { max-width: 600px; text-align: center; }
-    h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem; }
-    p { font-size: 1.1rem; color: #aaa; line-height: 1.6; margin-bottom: 2rem; }
-    .badge {
-      display: inline-block;
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 8px;
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-      color: #888;
-      margin-bottom: 2rem;
+    .product-info h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
     }
-    a.contact {
-      color: #f0f0f0;
-      text-decoration: none;
-      border-bottom: 1px solid #555;
+    .product-info p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
     }
-    footer { margin-top: 4rem; font-size: 0.8rem; color: #444; }
+    .product-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .tag {
+      font-size: 12px;
+      color: var(--muted);
+      background: #1a1a1e;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 4px 12px;
+    }
+    .product-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .product-link::after { content: "→"; }
+
+    /* COMING SOON */
+    .coming-soon {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .coming-soon-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+    .coming-soon h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .coming-soon p {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 480px;
+    }
+    .pipeline {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 480px;
+    }
+    .pipeline-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #141416;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    .pipeline-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--dim);
+      flex-shrink: 0;
+    }
+    .pipeline-item span {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+    footer {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo { font-size: 15px; font-weight: 700; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: var(--dim); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--muted); }
+    .footer-copy { font-size: 13px; color: var(--dim); }
+
+    @media (max-width: 640px) {
+      nav, .hero, .products, .coming-soon-inner, footer { padding-left: 24px; padding-right: 24px; }
+      .product-card { flex-direction: column; gap: 20px; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Knockout Apps</h1>
-    <p>We build focused, thoughtful mobile apps for iOS.</p>
-    <div class="badge">Atlanta, GA · knockout-apps.com</div>
-    <p>
-      Get in touch: <a class="contact" href="mailto:joe@knockout-apps.com">joe@knockout-apps.com</a>
-    </p>
-  </div>
-  <footer>&copy; 2026 Knockout Apps LLC</footer>
+
+  <nav>
+    <span class="nav-logo">Knockout Apps</span>
+    <a class="nav-contact" href="mailto:joe@knockout-apps.com">joe@knockout-apps.com</a>
+  </nav>
+
+  <section class="hero">
+    <p class="eyebrow">Independent iOS Development</p>
+    <h1>Focused apps for focused people.</h1>
+    <p>Knockout Apps LLC builds thoughtful, high-quality mobile applications for iOS. We believe the best apps do one thing exceptionally well.</p>
+    <div class="location-badge">Atlanta, GA</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="products">
+    <p class="section-label">Our Apps</p>
+    <div class="product-card">
+      <div class="product-icon">🎯</div>
+      <div class="product-info">
+        <h2>GridGoal</h2>
+        <p>A goal-tracking app built around the Harada Method — the same OW64 framework used by Olympic athletes and executives to achieve mastery. Set your 8 pillars, track 64 actions, and build the habits that matter.</p>
+        <div class="product-tags">
+          <span class="tag">iOS 17+</span>
+          <span class="tag">Goal Tracking</span>
+          <span class="tag">Harada Method</span>
+          <span class="tag">Free to download</span>
+        </div>
+        <a class="product-link" href="https://gridgoal.webflow.io" target="_blank">Learn more</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="coming-soon">
+    <div class="coming-soon-inner">
+      <p class="section-label">What's Next</p>
+      <h2>More apps in development.</h2>
+      <p>GridGoal is our first release. We're actively building additional iOS apps focused on productivity, self-improvement, and personal clarity.</p>
+      <div class="pipeline">
+        <div class="pipeline-item">
+          <div class="pipeline-dot"></div>
+          <span>Additional apps to be announced</span>
+        </div>
+        <div class="pipeline-item">
+          <div class="pipeline-dot"></div>
+          <span>Focused on iOS productivity &amp; wellness</span>
+        </div>
+        <div class="pipeline-item">
+          <div class="pipeline-dot"></div>
+          <span>Follow along at <a href="mailto:joe@knockout-apps.com" style="color: var(--gold);">joe@knockout-apps.com</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-logo">Knockout Apps LLC</span>
+    <div class="footer-links">
+      <a href="mailto:joe@knockout-apps.com">Contact</a>
+      <a href="https://gridgoal.webflow.io" target="_blank">GridGoal</a>
+    </div>
+    <span class="footer-copy">&copy; 2026 Knockout Apps LLC</span>
+  </footer>
+
 </body>
 </html>
